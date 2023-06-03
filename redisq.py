@@ -2,6 +2,7 @@ import redis
 
 class RedisQ:
     def __init__(self, host, port, q_name):
+        '''Simple Redis reliable queue client implementation'''
         self.redis_conn = redis.Redis(host=host, port=port)
         self.main_q = q_name
         self.processing_q = q_name + ":processing"
