@@ -11,6 +11,15 @@ class RedisQ {
         this.processingQ = qName + ":processing";
     }
 
+    async connect() {
+        this.redisConn.on('error', err => console.log('Redis Client Error', err));
+        await this.redisConn.connect();
+    }
+
+    async disconnect() {
+        await this.redisConn.disconnect();
+    }
+
     async mainQSize() {
         const mainQLen = await this.redisConn.lLen(this.mainQ);
         return mainQLen;
